@@ -1,0 +1,331 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f7fa;
+}
+
+.main {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+
+
+
+
+
+#checkbox {
+    display: none;
+}
+
+.hamburger {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.line {
+    position: absolute;
+        width: 21px;
+        height: 2px;
+        background-color: #fff;
+        border-radius: 3px;
+        transition: transform .25s, opacity .35s;
+}
+
+
+.line--top {
+    transform: translateY(-7px);
+}
+
+.line--bottom {
+    transform: translateY(7px);
+}
+
+
+
+
+#checkbox:checked-.line --top {
+    transform: rotate(45deg);
+}
+
+#checkbox:checked.line-middle {
+    transform: translatex(16px);
+    opacity: 0;
+}
+
+#checkbox:checked-.line--bottom {
+    transform: rotate(-45deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Front-End {
+    margin: 102px 342px 40px 88px;
+    width: 400px;
+    height: 230px;
+}
+
+.front {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin-bottom: 19px;
+}
+
+.name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 55px;
+    color: #000000;
+    margin-bottom: 24px;
+}
+
+.uname {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #595959;
+}
+
+.Projects {
+    margin: 40px 257px 51px 88px;
+    width: 485px;
+    height: 107px;
+}
+
+.proj {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.number-list {
+    padding: 0px;
+    padding-left: 17px;
+}
+
+.number {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.numbcontent {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #595959;
+    margin-left: 10px;
+}
+
+.links {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #595959;
+}
+
+.skobka {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+
+}
+
+.Work {
+    margin: 51px 217px 16px 88px;
+}
+
+.orgname {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.orgname1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.worke {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.New {
+    margin: 16px 217px 20px 88px;
+}
+
+.LLC {
+    margin: 20px 217px 43px 88px;
+}
+
+.orgname2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.organization {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FB6D3A;
+
+}
+
+.line {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+}
+
+.list-item {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #595959;
+
+}
+
+.Education {
+    margin: 43px 415px 107px 88px;
+    width: 327px;
+    height: 141px;
+}
+
+.educ {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.managment {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+
+}
+
+.numb {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+
+}
+
+p {
+    color: #A8A8A8;
+}
+
+.photo {
+    padding-top: 40px;
+    width: 370px;
+    height: 354px;
+    left: 40px;
+    top: 80px;
+}
+
+.sidebar {
+    background-color: #1E2939;
+}
+
+.contact {
+    margin-top: 51px;
+    margin-left: 40px;
+    color: white;
+}
+
+.contact-link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #49515F;
+}
+
+.tech {
+    margin-top: 47px;
+    margin-left: 40px;
+    color: white;
+    
+}
+
+.soft {
+    margin-top: 44px;
+    margin-left: 40px;
+    color: white;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.list {
+    color: white;
+    padding-left: 17px;
+}
+
+.item {
+    color: #FB6D3A;
+}
+
+.text {
+    color: white;
+}
