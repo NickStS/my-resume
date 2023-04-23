@@ -24,7 +24,7 @@ body {
     flex-direction: row-reverse;
     width: 1200px;
     margin: 0 auto;
-    background: var();
+    background: var(--primary-background-color);
     box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3);
 
 }
@@ -164,10 +164,11 @@ body {
     color: var(--gray-color);
     margin: 0;
     display: inline-block;
-    width: 50%;
+    width: 40%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    vertical-align: top;
 }
 
 .skobka {
