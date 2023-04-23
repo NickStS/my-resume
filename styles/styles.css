@@ -1,6 +1,22 @@
+:root {
+    --primary-background-color: #353535;
+    --backmain-color: #555555;
+    --backsidebar-color: #202020;
+    --text-color: #000000;
+    --white-color: #ffffff;
+    --orange-color: #FB6D3A;
+    --orange-50-color: #ffcab7;
+    --gray-color: #bbbbbb;
+    --green-color: #5f8868;
+    --p-color: #A8A8A8;
+}
+
+
+
+
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f5f7fa;
+    background-color: var(--primary-background-color);
 }
 
 .main {
@@ -8,9 +24,9 @@ body {
     flex-direction: row-reverse;
     width: 1200px;
     margin: 0 auto;
-    background: #FFFFFF;
-    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.1);
-    
+    background: var();
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3);
+
 }
 
 
@@ -34,11 +50,11 @@ body {
 
 .line {
     position: absolute;
-        width: 21px;
-        height: 2px;
-        background-color: #fff;
-        border-radius: 3px;
-        transition: transform .25s, opacity .35s;
+    width: 21px;
+    height: 2px;
+    background-color: var(--white-color);
+    border-radius: 3px;
+    transition: transform .25s, opacity .35s;
 }
 
 
@@ -73,15 +89,9 @@ body {
 
 
 
-
-
-
-
-
 .Front-End {
     margin: 102px 342px 40px 88px;
     width: 400px;
-    height: 230px;
 }
 
 .front {
@@ -89,7 +99,7 @@ body {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
-    color: #000000;
+    color: var(--white-color);
     margin-bottom: 19px;
 }
 
@@ -98,7 +108,7 @@ body {
     font-weight: 700;
     font-size: 45px;
     line-height: 55px;
-    color: #000000;
+    color: var(--white-color);
     margin-bottom: 24px;
 }
 
@@ -107,13 +117,12 @@ body {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color: #595959;
+    color: var(--gray-color);
 }
 
-.Projects {
+.projects {
     margin: 40px 257px 51px 88px;
     width: 485px;
-    height: 107px;
 }
 
 .proj {
@@ -121,7 +130,7 @@ body {
     font-weight: 700;
     font-size: 22px;
     line-height: 27px;
-    color: #000000;
+    color: var(--orange-color);
     margin-bottom: 8px;
 }
 
@@ -135,7 +144,7 @@ body {
     font-weight: 700;
     font-size: 14px;
     line-height: 24px;
-    color: #000000;
+    color: var(--white-color);
 }
 
 .numbcontent {
@@ -143,7 +152,7 @@ body {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color: #595959;
+    color: var(--gray-color);
     margin-left: 10px;
 }
 
@@ -152,14 +161,20 @@ body {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color: #595959;
+    color: var(--gray-color);
+    margin: 0;
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .skobka {
     font-weight: 700;
     font-size: 14px;
     line-height: 24px;
-    color: #000000;
+    color: var(--white-color);
 
 }
 
@@ -172,7 +187,7 @@ body {
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
-    color: #000000;
+    color: var(--white-color);
 }
 
 .orgname1 {
@@ -180,7 +195,7 @@ body {
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
-    color: #000000;
+    color: var(--white-color);
 }
 
 .worke {
@@ -188,7 +203,7 @@ body {
     font-weight: 700;
     font-size: 22px;
     line-height: 27px;
-    color: #000000;
+    color: var(--orange-color);
     margin-bottom: 12px;
 }
 
@@ -205,7 +220,7 @@ body {
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
-    color: #000000;
+    color: var(--white-color);
 }
 
 .organization {
@@ -213,7 +228,7 @@ body {
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
-    color: #FB6D3A;
+    color: var(--orange-50-color);
 
 }
 
@@ -222,7 +237,7 @@ body {
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
-    color: #000000;
+    color: var(--white-color);
 }
 
 .list-item {
@@ -230,14 +245,13 @@ body {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color: #595959;
+    color: var(--gray-color);
 
 }
 
 .Education {
     margin: 43px 415px 107px 88px;
-    width: 327px;
-    height: 141px;
+    width: 335px;
 }
 
 .educ {
@@ -245,16 +259,16 @@ body {
     font-weight: 700;
     font-size: 22px;
     line-height: 27px;
-    color: #000000;
+    color: var(--orange-color);
     margin-bottom: 12px;
 }
 
-.managment {
+.specialty {
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
-    color: #000000;
+    color: var(--white-color);
 
 }
 
@@ -263,12 +277,12 @@ body {
     font-weight: 700;
     font-size: 14px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--white-color);
 
 }
 
 p {
-    color: #A8A8A8;
+    color: var(--p-color);
 }
 
 .photo {
@@ -280,13 +294,13 @@ p {
 }
 
 .sidebar {
-    background-color: #1E2939;
+    background-color: var(--backsidebar-color);
 }
 
 .contact {
     margin-top: 51px;
     margin-left: 40px;
-    color: white;
+    color: var(--white-color);
 }
 
 .contact-link {
@@ -294,20 +308,20 @@ p {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color: #49515F;
+    color: var(--green-color);
 }
 
 .tech {
     margin-top: 47px;
     margin-left: 40px;
-    color: white;
-    
+    color: var(--white-color);
+
 }
 
 .soft {
     margin-top: 44px;
     margin-left: 40px;
-    color: white;
+    color: var(--white-color);
 }
 
 .title {
@@ -318,14 +332,14 @@ p {
 }
 
 .list {
-    color: white;
+    color: var(--white-color);
     padding-left: 17px;
 }
 
 .item {
-    color: #FB6D3A;
+    color: var(--orange-color);
 }
 
 .text {
-    color: white;
+    color: var(--white-color);
 }
