@@ -264,13 +264,22 @@ body {
     margin-bottom: 12px;
 }
 
+.experience_link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--white-color);
+    margin: 0;
+    text-decoration: underline;
+}
+
 .specialty {
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
     color: var(--white-color);
-
 }
 
 .numb {
