@@ -274,6 +274,10 @@ body {
     text-decoration: underline;
 }
 
+.indent {
+    margin-bottom: 10px;
+}
+
 .specialty {
     font-style: normal;
     font-weight: 700;
