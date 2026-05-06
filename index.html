@@ -1,439 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css">
-    <title>Mykola Startsev | UAV Instructor & 3D Visualizer | Resume</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            function setActiveLink() {
-                let currentSection = '';
-                const windowHeight = window.innerHeight;
-                const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-                
-                const viewportCenter = windowHeight / 2;
-                const activationZoneTop = viewportCenter - (windowHeight * 0.25);
-                const activationZoneBottom = viewportCenter + (windowHeight * 0.25);
-                
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    const sectionTop = rect.top;
-                    const sectionBottom = rect.bottom;
-                    const sectionCenter = sectionTop + (rect.height / 2);
-                    
-                    if ((sectionCenter >= activationZoneTop && sectionCenter <= activationZoneBottom) ||
-                        (sectionTop <= activationZoneTop && sectionBottom >= activationZoneBottom)) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            window.addEventListener('scroll', setActiveLink);
-            window.addEventListener('resize', setActiveLink);
-            setActiveLink();
-        });
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mykola Startsev — Drone-tech Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="main-content-wrapper">
-            <header class="header">
-                <div class="header-content">
-                    <div class="profile-section">
-                        <div class="profile-info">
-                            <h1 class="name">Mykola Startsev</h1>
-                            <p class="title">UAV Instructor | 3D Visualizer | Software Engineer</p>
-                            <div class="location">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                <span>Prague, Czech Republic</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
+<canvas id="grain" aria-hidden="true"></canvas>
+<div class="page">
 
-            <main class="main-content">
-                <section id="about" class="section about">
-                    <div class="section-content">
-                        <h2 class="section-title">About Me</h2>
-                        <p class="about-text">
-                            Experienced UAV instructor specializing in drone operations, FPV flight training, and unmanned aerial systems. 
-                            Skilled in 3D visualization, aerial photography, and technical instruction. Currently pursuing Software Engineering 
-                            at State University of Telecommunications while working with military and civilian personnel at SkyPilots School in Kyiv.
-                        </p>
-                    </div>
-                </section>
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-                <section id="experience" class="section experience">
-                    <div class="section-content">
-                        <h2 class="section-title">Work Experience</h2>
-                        
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <div>
-                                    <h3 class="job-title">UAV Instructor</h3>
-                                    <p class="company">SkyPilots</p>
-                                </div>
-                                <span class="date">Oct 2023 - Aug 2025</span>
-                            </div>
-                            <p class="job-description">
-                                Conduct hands-on training for military and civilian personnel in drone fundamentals, including mission planning, 
-                                signal jamming, and navigation. Deliver FPV flight training from basic control to advanced video system setup. 
-                                Teach drone maintenance, pre-flight checks, and battery/control systems. Conduct testing and track cadet progress.
-                            </p>
-                            <div class="skills-tags">
-                                <span class="tag">UAV Training</span>
-                                <span class="tag">FPV Flight</span>
-                                <span class="tag">Mission Planning</span>
-                                <span class="tag">Drone Maintenance</span>
-                            </div>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <div>
-                                    <h3 class="job-title">3D Visualizer</h3>
-                                    <p class="company">Department of Youth and Sports, Kropyvnytskyi City Council</p>
-                                </div>
-                                <span class="date">Apr 2025</span>
-                            </div>
-                            <p class="job-description">
-                                Performed 3D visualization of 65,000 m² sports complex renovation using 3ds Max and Corona Renderer. 
-                                Captured 1,300+ drone photos with DJI Mavic 2 Pro and created accurate 3D terrain model using WebODM deployed via Docker. 
-                                Applied PBR textures for photorealistic results and designed final renderings showing post-reconstruction appearance.
-                            </p>
-                            <div class="skills-tags">
-                                <span class="tag">3ds Max</span>
-                                <span class="tag">Corona Renderer</span>
-                                <span class="tag">Photogrammetry</span>
-                                <span class="tag">DJI Mavic 2 Pro</span>
-                            </div>
-                            <a href="https://www.artstation.com/artwork/DLyPv0" class="project-link" target="_blank">View project on ArtStation →</a>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <div>
-                                    <h3 class="job-title">3D Tour Creator</h3>
-                                    <p class="company">State University of Telecommunications</p>
-                                </div>
-                                <span class="date">Nov 2023</span>
-                            </div>
-                            <p class="job-description">
-                                Created interactive 3D campus tour using DJI Mavic 2 Pro drone in 360° panoramic mode. 
-                                Processed panoramas in Adobe Photoshop for seamless stitching, then assembled interactive tour in Pano2VR. 
-                                Optimized for web deployment on university's official website.
-                            </p>
-                            <div class="skills-tags">
-                                <span class="tag">360° Photography</span>
-                                <span class="tag">Pano2VR</span>
-                                <span class="tag">Adobe Photoshop</span>
-                                <span class="tag">Aerial Photography</span>
-                            </div>
-                            <a href="https://duikt.edu.ua/360tours/3d_tour2/" class="project-link" target="_blank">View 3D Tour →</a>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <div>
-                                    <h3 class="job-title">Operator & Videomaker</h3>
-                                    <p class="company">TCTdesign</p>
-                                </div>
-                                <span class="date">Feb 2024</span>
-                            </div>
-                            <p class="job-description">
-                                Filmed and edited video presentation of private house for architectural studio. 
-                                Shot with smartphone using DJI Osmo Mobile 3 stabilizer. Edited in Adobe Premiere Pro with music, 
-                                transitions, and color correction. Video used for Instagram and YouTube portfolio presentation.
-                            </p>
-                            <div class="skills-tags">
-                                <span class="tag">Videography</span>
-                                <span class="tag">Adobe Premiere Pro</span>
-                                <span class="tag">DJI Osmo Mobile</span>
-                                <span class="tag">Color Grading</span>
-                            </div>
-                            <a href="https://youtu.be/Y5gazmQ0Cjw" class="project-link" target="_blank">Watch video →</a>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <div>
-                                    <h3 class="job-title">Software Prototype Developer</h3>
-                                    <p class="company">Personal Project</p>
-                                </div>
-                                <span class="date">Self-Initiative</span>
-                            </div>
-                            <p class="job-description">
-                                Developed Python application for DJI Tello drone control from laptop using djitellopy library and Pygame. 
-                                Created intuitive interface with stable Wi-Fi connection, flight control, video streaming, and keyboard command processing. 
-                                Studied SDK, tested real-time functions, and debugged hardware interaction.
-                            </p>
-                            <div class="skills-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Pygame</span>
-                                <span class="tag">SDK Integration</span>
-                                <span class="tag">Hardware Control</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="education" class="section education">
-                    <div class="section-content">
-                        <h2 class="section-title">Education</h2>
-                        
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div>
-                                    <h3 class="degree">Bachelor's in Software Engineering</h3>
-                                    <p class="school">State University of Telecommunications</p>
-                                </div>
-                                <span class="date">Sep 2022 - Present</span>
-                            </div>
-                            <p class="education-details">Level in EQF 4</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="skills" class="section skills">
-                    <div class="section-content">
-                        <h2 class="section-title">Skills & Expertise</h2>
-                        
-                        <div class="skills-grid">
-                            <div class="skill-category">
-                                <h3 class="category-title">Drones & UAV</h3>
-                                <div class="skills-list">
-                                    <span class="skill-item">UAV Instruction</span>
-                                    <span class="skill-item">Drone Piloting</span>
-                                    <span class="skill-item">FPV Flight</span>
-                                    <span class="skill-item">Cartography</span>
-                                    <span class="skill-item">Mission Planning</span>
-                                </div>
-                            </div>
-
-                            <div class="skill-category">
-                                <h3 class="category-title">Photo/Video/Editing</h3>
-                                <div class="skills-list">
-                                    <span class="skill-item">Aerial Photography</span>
-                                    <span class="skill-item">Videography</span>
-                                    <span class="skill-item">Adobe Premiere Pro</span>
-                                    <span class="skill-item">DaVinci Resolve</span>
-                                    <span class="skill-item">Adobe Photoshop</span>
-                                    <span class="skill-item">Lightroom</span>
-                                </div>
-                            </div>
-
-                            <div class="skill-category">
-                                <h3 class="category-title">3D & Visualization</h3>
-                                <div class="skills-list">
-                                    <span class="skill-item">3D Visualization</span>
-                                    <span class="skill-item">3D Modeling</span>
-                                    <span class="skill-item">3ds Max (Corona)</span>
-                                    <span class="skill-item">Cinema 4D</span>
-                                    <span class="skill-item">RedShift</span>
-                                    <span class="skill-item">Unreal Engine</span>
-                                    <span class="skill-item">AutoDesk 3DMAX</span>
-                                </div>
-                            </div>
-
-                            <div class="skill-category">
-                                <h3 class="category-title">Programming</h3>
-                                <div class="skills-list">
-                                    <span class="skill-item">Python (Basic)</span>
-                                    <span class="skill-item">Discord Bots</span>
-                                    <span class="skill-item">Figma</span>
-                                    <span class="skill-item">HTML5</span>
-                                    <span class="skill-item">CSS3</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="languages" class="section languages">
-                    <div class="section-content">
-                        <h2 class="section-title">Languages</h2>
-                        
-                        <div class="languages-grid">
-                            <div class="language-item">
-                                <div class="language-header">
-                                    <span class="language-name">Ukrainian</span>
-                                    <span class="language-level native">Native</span>
-                                </div>
-                            </div>
-                            <div class="language-item">
-                                <div class="language-header">
-                                    <span class="language-name">Russian</span>
-                                    <span class="language-level native">Native</span>
-                                </div>
-                            </div>
-                            <div class="language-item">
-                                <div class="language-header">
-                                    <span class="language-name">English</span>
-                                    <span class="language-level intermediate">B1</span>
-                                </div>
-                            </div>
-                            <div class="language-item">
-                                <div class="language-header">
-                                    <span class="language-name">Czech</span>
-                                    <span class="language-level beginner">A1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="links" class="section links">
-                    <div class="section-content">
-                        <h2 class="section-title">Portfolio & Social</h2>
-                        
-                        <div class="links-grid">
-                            <a href="https://github.com/NickStS" class="link-card" target="_blank">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <div>
-                                    <span class="link-title">GitHub</span>
-                                    <span class="link-url">github.com/NickStS</span>
-                                </div>
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/mykola-startsev-0528b4220/" class="link-card" target="_blank">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                </svg>
-                                <div>
-                                    <span class="link-title">LinkedIn</span>
-                                    <span class="link-url">mykola-startsev</span>
-                                </div>
-                            </a>
-
-                            <a href="https://www.youtube.com/channel/UCgFxOEan9KvH-u13iJRV4PA" class="link-card" target="_blank">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                </svg>
-                                <div>
-                                    <span class="link-title">YouTube</span>
-                                    <span class="link-url">My Channel</span>
-                                </div>
-                            </a>
-
-                            <a href="https://www.instagram.com/danger_videograph/" class="link-card" target="_blank">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                                <div>
-                                    <span class="link-title">Instagram</span>
-                                    <span class="link-url">@danger_videograph</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <footer class="footer">
-                <p class="footer-text">
-                    © 2024 Mykola Startsev.
-                </p>
-                <p class="footer-note">
-                    This resume is available online at <a href="https://nicksts.github.io/my-resume/">nicksts.github.io/my-resume</a>
-                </p>
-            </footer>
+      <div class="photo-wrap">
+        <div class="photo-frame">
+          <img src="img/light1.jpg" alt="Mykola Startsev">
+          <span class="photo-label">PRAGUE · 2026</span>
         </div>
+        <div class="photo-corner tl"></div>
+        <div class="photo-corner br"></div>
+      </div>
 
-        <aside class="sidebar">
-            <div class="sidebar-photo">
-                <img src="img/light1.jpg" alt="Mykola Startsev" class="sidebar-avatar">
-            </div>
+      <nav class="sidebar-nav" aria-label="Page navigation">
+        <p class="sidebar-label">Navigation</p>
+        <ul class="nav-list">
+          <li><a href="#about"      class="nav-link active"><span class="nav-text">About</span><span class="nav-idx">01</span></a></li>
+          <li><a href="#featured"   class="nav-link"><span class="nav-text">Featured Work</span><span class="nav-idx">02</span></a></li>
+          <li><a href="#experience" class="nav-link"><span class="nav-text">Experience</span><span class="nav-idx">03</span></a></li>
+          <li><a href="#education"  class="nav-link"><span class="nav-text">Education</span><span class="nav-idx">04</span></a></li>
+          <li><a href="#skills"     class="nav-link"><span class="nav-text">Skills</span><span class="nav-idx">05</span></a></li>
+          <li><a href="#languages"  class="nav-link"><span class="nav-text">Languages</span><span class="nav-idx">06</span></a></li>
+          <li><a href="#links"      class="nav-link"><span class="nav-text">Portfolio</span><span class="nav-idx">07</span></a></li>
+        </ul>
+      </nav>
 
-            <nav class="sidebar-nav">
-                <h3>Navigation</h3>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About Me</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#experience" class="nav-link">Work Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#education" class="nav-link">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#skills" class="nav-link">Skills & Expertise</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#languages" class="nav-link">Languages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#links" class="nav-link">Portfolio & Social</a>
-                    </li>
-                </ul>
-            </nav>
+      <div class="sidebar-contacts">
+        <p class="sidebar-label">Contact</p>
+        <div class="contact-row">
+          <span class="contact-key">Tel</span>
+          <a href="tel:+420723157310" class="contact-val">+420 723 157 310</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">Email</span>
+          <a href="mailto:nikolastartsev@gmail.com" class="contact-val">nikolastartsev@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">Location</span>
+          <span class="contact-val">Prague, Czech Republic</span>
+        </div>
+      </div>
 
-            <div class="contact">
-                <h3>Contacts</h3>
-                <div>
-                    <span class="numb">Tel:</span>
-                    <a href="tel:+420723157310" class="contact-link">+420 723 157 310</a>
-                </div>
-                <div>
-                    <span class="numb">Email:</span>
-                    <a href="mailto:nikolastartsev@gmail.com" class="contact-link">nikolastartsev@gmail.com</a>
-                </div>
-            </div>
+      <div class="sidebar-tech">
+        <p class="sidebar-label">Tech Stack</p>
+        <div class="tech-pills">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Kotlin</span>
+          <span class="tech-pill">Android</span>
+          <span class="tech-pill">TFLite</span>
+          <span class="tech-pill">YOLOv8</span>
+          <span class="tech-pill">OpenCV</span>
+          <span class="tech-pill">Docker</span>
+          <span class="tech-pill">Git</span>
+          <span class="tech-pill">3ds Max</span>
+          <span class="tech-pill">Cinema 4D</span>
+          <span class="tech-pill">Unreal</span>
+          <span class="tech-pill">Figma</span>
+          <span class="tech-pill">SQLite</span>
+          <span class="tech-pill">DJI SDK</span>
+          <span class="tech-pill">Mapbox</span>
+        </div>
+      </div>
 
-            <div class="tech">
-                <h3 class="title">Tech Skills</h3>
-                <ul class="list">
-                    <li class="item"><span class="text">Python</span></li>
-                    <li class="item"><span class="text">HTML5</span></li>
-                    <li class="item"><span class="text">CSS3</span></li>
-                    <li class="item"><span class="text">JavaScript</span></li>
-                    <li class="item"><span class="text">GIT</span></li>
-                    <li class="item"><span class="text">Figma</span></li>
-                    <li class="item"><span class="text">3ds Max</span></li>
-                    <li class="item"><span class="text">Adobe Suite</span></li>
-                    <li class="item"><span class="text">DaVinci Resolve</span></li>
-                    <li class="item"><span class="text">Unreal Engine</span></li>
-                </ul>
-            </div>
-        </aside>
     </div>
-</body>
+  </aside>
 
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-grid"></div>
+
+      <div class="hero-top">
+        <span class="hero-tag">DRONE-TECH · ML · 3D VISUALIZATION</span>
+        <span class="hero-status">
+          <span class="status-dot"></span>
+          Open to opportunities
+        </span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="first">Mykola</span>
+        <span class="last">Startsev</span>
+      </h1>
+      <p class="hero-subtitle">Drone-tech Engineer &amp; Computer Vision</p>
+
+      <!-- CTA -->
+      <div class="hero-cta">
+        <a href="mailto:nikolastartsev@gmail.com" class="cta-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email
+        </a>
+        <a href="https://www.linkedin.com/in/mykola-startsev-0528b4220/" class="cta-btn" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/NickStS" class="cta-btn" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- 01 ABOUT -->
+      <section id="about" class="section" data-screen-label="01 About">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2 class="section-title">About</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-block">
+          <div class="about-text">
+            <p>Drone-tech engineer combining <strong>2+ years of hands-on UAV operations</strong> with software engineering,
+              computer vision, and 3D visualization. Currently completing my BSc in Software Engineering at SUICT,
+              with a thesis on real-time landmine detection using on-device YOLOv8 (Android + DJI SDK).</p>
+            <p>Looking for <strong>Junior Software Engineer / ML Engineer / Drone Software</strong> roles in Prague or EU remote.
+              Open to defense-tech, drone startups, computer vision, and 3D pipeline work.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 FEATURED WORK -->
+      <section id="featured" class="section" data-screen-label="02 Featured Work">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2 class="section-title">Featured Work</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="work-grid">
+
+          <div class="work-card">
+            <div class="work-thumb">
+              <div class="work-thumb-placeholder">
+                <svg class="work-thumb-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><rect x="8" y="8" width="6" height="6" rx="1"/></svg>
+                <span class="work-thumb-note">drone POV with detection boxes</span>
+              </div>
+              <img class="work-thumb-img" src="img/featured-minedetector.jpg" alt="MineDetector preview" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="work-card-body">
+              <span class="work-tag">ML / Computer Vision</span>
+              <h3 class="work-name">MineDetector</h3>
+              <p class="work-desc">On-device YOLOv8 landmine detection for UAV, Android + DJI SDK, geo-tagged threat maps via Mapbox.</p>
+              <div class="work-foot">
+                <span class="work-metric">mAP@50 = 0.776</span>
+                <span class="work-link" style="color:var(--text-3); cursor:default;">BSc Thesis</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://www.artstation.com/artwork/DLyPv0" class="work-card" target="_blank" rel="noopener">
+            <div class="work-thumb">
+              <div class="work-thumb-placeholder">
+                <svg class="work-thumb-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="work-thumb-note">3D photoreal render of sports complex</span>
+              </div>
+              <img class="work-thumb-img" src="img/featured-sports.jpg" alt="Sports complex 3D render" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="work-card-body">
+              <span class="work-tag">3D / Photogrammetry</span>
+              <h3 class="work-name">Sports Complex Visualization</h3>
+              <p class="work-desc">65,000 m² renovation — drone photogrammetry pipeline to photoreal 3D using 3ds Max + Corona + WebODM.</p>
+              <div class="work-foot">
+                <span class="work-metric">1,300+ aerial images</span>
+                <span class="work-link">ArtStation ↗</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://duikt.edu.ua/360tours/3d_tour2/" class="work-card" target="_blank" rel="noopener">
+            <div class="work-thumb">
+              <div class="work-thumb-placeholder">
+                <svg class="work-thumb-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+                <span class="work-thumb-note">360° interactive campus panorama</span>
+              </div>
+              <img class="work-thumb-img" src="img/featured-duikt.jpg" alt="DUIKT campus 360 tour" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="work-card-body">
+              <span class="work-tag">Interactive / 360°</span>
+              <h3 class="work-name">DUIKT Interactive Campus Tour</h3>
+              <p class="work-desc">Drone-shot 360° panoramas stitched in Pano2VR, deployed on official university site.</p>
+              <div class="work-foot">
+                <span class="work-metric" style="color:var(--green);">Live in production</span>
+                <span class="work-link">View Tour ↗</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- 03 EXPERIENCE -->
+      <section id="experience" class="section" data-screen-label="03 Experience">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2 class="section-title">Work Experience</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="exp-list">
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">Sep 2025<br>May 2026</div>
+              <div class="exp-company">SUICT · Software Eng.</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">Lead Developer — MineDetector</h3>
+              <div class="exp-metric">mAP@50 = 0.776 · 2 papers published</div>
+              <p class="exp-desc">Built an Android application for UAV-based real-time landmine detection. Integrated DJI Mobile SDK v4
+                for live drone video stream, trained YOLOv8n on a custom dataset of 5 anti-personnel mine types
+                (PMN-2, MON-50, POM-3, PFM-1, PMN-1), quantized to TFLite float16 for on-device inference.
+                Integrated Mapbox SDK for geo-tagging and threat map rendering. Architecture: Kotlin + MVVM.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">Kotlin</span><span class="exp-tag">Android MVVM</span><span class="exp-tag">YOLOv8</span>
+                <span class="exp-tag">TFLite</span><span class="exp-tag">Computer Vision</span><span class="exp-tag">DJI SDK</span>
+                <span class="exp-tag">Mapbox</span><span class="exp-tag">Python</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">Oct 2023<br>Aug 2025</div>
+              <div class="exp-company">SkyPilots</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">UAV Instructor</h3>
+              <p class="exp-desc">Hands-on instructor — trained military, civilian, and humanitarian-demining personnel from <strong>SES (DSNS), MAG, and HALO Trust</strong>. Core focus: <strong>thermal-imaging surveys for landmine and UXO detection</strong> using DJI Mavic 3T with thermal payload — mission planning, flight ops, drone maintenance, pre-flight checks, RF systems. Also delivered FPV theory and simulator-based training (Liftoff) as part of the curriculum.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">UAV Training</span><span class="exp-tag">Thermal Imaging</span>
+                <span class="exp-tag">Mission Planning</span><span class="exp-tag">Mavic 3T</span>
+                <span class="exp-tag">Humanitarian Demining</span><span class="exp-tag">FPV (Sim)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">Apr 2025</div>
+              <div class="exp-company">Kropyvnytskyi City Council</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">3D Visualizer</h3>
+              <p class="exp-desc">3D visualization of 65,000 m² sports complex renovation. 1,300+ drone photos with DJI Mavic 2 Pro, 3D terrain model via WebODM + Docker. PBR textures, Corona Renderer photoreal results.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">3ds Max</span><span class="exp-tag">Corona Renderer</span>
+                <span class="exp-tag">Photogrammetry</span><span class="exp-tag">WebODM</span>
+              </div>
+              <a href="https://www.artstation.com/artwork/DLyPv0" class="exp-link" target="_blank">ArtStation</a>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">Nov 2023</div>
+              <div class="exp-company">DUIKT</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">3D Tour Creator</h3>
+              <p class="exp-desc">Interactive 3D campus tour from DJI Mavic 2 Pro 360° panoramas. Stitched in Photoshop, assembled in Pano2VR, deployed on university website.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">360° Photography</span><span class="exp-tag">Pano2VR</span>
+                <span class="exp-tag">Adobe Photoshop</span>
+              </div>
+              <a href="https://duikt.edu.ua/360tours/3d_tour2/" class="exp-link" target="_blank">View 3D Tour</a>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">Feb 2024</div>
+              <div class="exp-company">TCTdesign</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">Operator &amp; Videomaker</h3>
+              <p class="exp-desc">Filmed and edited house presentation for architectural studio. DJI Osmo Mobile 3, edited in Premiere Pro — music, transitions, color correction. Used for Instagram + YouTube portfolio.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">Videography</span><span class="exp-tag">Premiere Pro</span><span class="exp-tag">Color Grading</span>
+              </div>
+              <a href="https://youtu.be/Y5gazmQ0Cjw" class="exp-link" target="_blank">Watch video</a>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">Self‑Initiative</div>
+              <div class="exp-company">Personal Project</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">DJI Tello Python Controller</h3>
+              <p class="exp-desc">Python + Pygame app for DJI Tello drone control: Wi-Fi connection, flight controls, live video streaming, keyboard command processing via djitellopy SDK.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">Python</span><span class="exp-tag">Pygame</span>
+                <span class="exp-tag">DJI Tello SDK</span><span class="exp-tag">Hardware Control</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-date">2022 — 2023</div>
+              <div class="exp-company">AutoLab · Team Project</div>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">UI/UX Designer — Admin Panel</h3>
+              <p class="exp-desc">Designed admin panel UI/UX for AutoLab — a Telegram bot system for automated grading of Python lab assignments. Built Figma mockups for assignment management, student tracking, grading workflows, and statistics dashboards. Worked as part of a startup-stage team during my first year of university.</p>
+              <div class="exp-tags">
+                <span class="exp-tag">Figma</span><span class="exp-tag">UI/UX Design</span>
+                <span class="exp-tag">Design Systems</span><span class="exp-tag">Team Project</span>
+              </div>
+              <a href="https://www.figma.com/design/6hznFIUd0X7svJv0nTfWKh/AutoLab" class="exp-link" target="_blank">View Figma</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04 EDUCATION -->
+      <section id="education" class="section" data-screen-label="04 Education">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2 class="section-title">Education</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <h3 class="edu-degree">Bachelor's in Software Engineering</h3>
+            <p class="edu-school">State University of Information and Communication Technologies (SUICT)</p>
+            <p class="edu-detail">Group ТЦР-42 · Department of Software Engineering</p>
+            <div class="edu-thesis">
+              <strong>BSc Thesis:</strong> "MineDetector — UAV-Based Real-Time Landmine Detection System Using Computer Vision" · mAP@50 = 0.776
+            </div>
+          </div>
+          <div class="edu-date">Sep 2022<br>Jun 2026</div>
+        </div>
+      </section>
+
+      <!-- 05 SKILLS -->
+      <section id="skills" class="section" data-screen-label="05 Skills">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2 class="section-title">Skills &amp; Expertise</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-cat">
+            <p class="skill-cat-title">Drones &amp; UAV</p>
+            <div class="skill-items">
+              <span class="skill-name">UAV Instruction</span>
+              <span class="skill-name">Drone Piloting</span>
+              <span class="skill-name">FPV Flight</span>
+              <span class="skill-name">Cartography</span>
+              <span class="skill-name">Mission Planning</span>
+            </div>
+          </div>
+          <div class="skill-cat">
+            <p class="skill-cat-title">Photo / Video</p>
+            <div class="skill-items">
+              <span class="skill-name">Aerial Photography</span>
+              <span class="skill-name">Videography</span>
+              <span class="skill-name">Adobe Premiere Pro</span>
+              <span class="skill-name">DaVinci Resolve</span>
+              <span class="skill-name">Photoshop / Lightroom</span>
+            </div>
+          </div>
+          <div class="skill-cat">
+            <p class="skill-cat-title">3D &amp; Visualization</p>
+            <div class="skill-items">
+              <span class="skill-name">3D Visualization</span>
+              <span class="skill-name">3D Modeling</span>
+              <span class="skill-name">3ds Max + Corona</span>
+              <span class="skill-name">Cinema 4D + RedShift</span>
+              <span class="skill-name">Unreal Engine</span>
+            </div>
+          </div>
+          <div class="skill-cat">
+            <p class="skill-cat-title">Programming</p>
+            <div class="skill-items">
+              <span class="skill-name">Python</span>
+              <span class="skill-name">Kotlin</span>
+              <span class="skill-name">Android Dev (MVVM)</span>
+              <span class="skill-name">HTML5 / CSS3 / JS</span>
+              <span class="skill-name">Git · Docker</span>
+            </div>
+          </div>
+          <div class="skill-cat">
+            <p class="skill-cat-title">ML &amp; Computer Vision</p>
+            <div class="skill-items">
+              <span class="skill-name">TensorFlow Lite</span>
+              <span class="skill-name">YOLOv8</span>
+              <span class="skill-name">OpenCV</span>
+              <span class="skill-name">Machine Learning</span>
+              <span class="skill-name">LLM Integration</span>
+            </div>
+          </div>
+          <div class="skill-cat">
+            <p class="skill-cat-title">SDKs &amp; Tools</p>
+            <div class="skill-items">
+              <span class="skill-name">DJI Mobile SDK v4</span>
+              <span class="skill-name">DJI Tello SDK</span>
+              <span class="skill-name">Mapbox SDK</span>
+              <span class="skill-name">WebODM</span>
+              <span class="skill-name">Figma</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 LANGUAGES -->
+      <section id="languages" class="section" data-screen-label="06 Languages">
+        <div class="section-header">
+          <span class="section-num">06</span>
+          <h2 class="section-title">Languages</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="lang-grid">
+          <div class="lang-item">
+            <div class="lang-name">Ukrainian</div>
+            <div class="lang-level native">Native</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">Russian</div>
+            <div class="lang-level native">Native</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">English</div>
+            <div class="lang-level b1">B1</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">Czech</div>
+            <div class="lang-level b1">B1</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 PORTFOLIO -->
+      <section id="links" class="section" data-screen-label="07 Portfolio">
+        <div class="section-header">
+          <span class="section-num">07</span>
+          <h2 class="section-title">Portfolio &amp; Social</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="links-row">
+          <a href="https://github.com/NickStS" class="link-card" target="_blank">
+            <div class="link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
+            <div class="link-info"><div class="link-name">GitHub</div><div class="link-url">github.com/NickStS</div></div>
+            <span class="link-arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mykola-startsev-0528b4220/" class="link-card" target="_blank">
+            <div class="link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></div>
+            <div class="link-info"><div class="link-name">LinkedIn</div><div class="link-url">mykola-startsev</div></div>
+            <span class="link-arrow">↗</span>
+          </a>
+          <a href="https://www.youtube.com/channel/UCgFxOEan9KvH-u13iJRV4PA" class="link-card" target="_blank">
+            <div class="link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="link-info"><div class="link-name">YouTube</div><div class="link-url">My Channel</div></div>
+            <span class="link-arrow">↗</span>
+          </a>
+          <a href="https://www.instagram.com/danger_videograph/" class="link-card" target="_blank">
+            <div class="link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            <div class="link-info"><div class="link-name">Instagram</div><div class="link-url">@danger_videograph</div></div>
+            <span class="link-arrow">↗</span>
+          </a>
+        </div>
+      </section>
+
+    </div><!-- /.content -->
+
+    <footer class="footer">
+      <span class="footer-left">© 2026 MYKOLA STARTSEV</span>
+      <span class="footer-right"><a href="https://nicksts.github.io/my-resume/">nicksts.github.io/my-resume</a></span>
+    </footer>
+
+  </main>
+</div>
+
+
+<script src="scripts/main.js" defer></script>
+</body>
 </html>
