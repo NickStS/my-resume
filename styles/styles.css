@@ -69,7 +69,7 @@ body {
 }
 
 /* photo */
-.photo-wrap { position: relative; margin-bottom: 32px; }
+.photo-wrap { position: relative; margin-bottom: 32px; z-index: 10000; }
 .photo-frame {
   position: relative;
   width: 100%;
@@ -117,15 +117,23 @@ body {
 .nav-link {
   display: flex; align-items: center; justify-content: space-between;
   padding: 10px 0; color: var(--text-2); text-decoration: none;
-  font-size: 13px; font-weight: 400; transition: color 0.2s;
+  font-size: 13px; font-weight: 400;
+  transition: color 0.2s ease;
 }
-.nav-link:hover, .nav-link.active { color: var(--text); }
-.nav-idx {
+.nav-link .nav-text { color: inherit; transition: color 0.2s ease; }
+.nav-link .nav-idx {
   font-family: var(--font-mono); font-size: 10px;
-  color: var(--text-3); transition: color 0.2s;
+  color: var(--text-3); transition: color 0.2s ease;
 }
-.nav-link:hover .nav-idx, .nav-link.active .nav-idx { color: var(--accent); }
+
+/* hover (mouse only) — soft white */
+.nav-link:hover { color: var(--text); }
+.nav-link:hover .nav-idx { color: var(--accent); }
+
+/* active (current section) — orange on both text and index, overrides hover */
+.nav-link.active,
 .nav-link.active .nav-text { color: var(--accent); }
+.nav-link.active .nav-idx { color: var(--accent); }
 
 /* contacts */
 .sidebar-contacts { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }

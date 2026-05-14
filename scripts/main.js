@@ -59,16 +59,24 @@
   const links    = document.querySelectorAll('.nav-link');
   function spy() {
     let cur = '';
-    /* If user scrolled to (near) the bottom — force-highlight the last section.
-       Otherwise the last short section never reaches the 40% mid-line. */
+    /* If user scrolled to (near) the bottom — force-highlight the last section. */
     const atBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 4);
     if (atBottom && sections.length) {
       cur = sections[sections.length - 1].id;
     } else {
-      const mid = window.innerHeight * 0.4;
+      /* For each section, measure how far its center is from viewport center.
+         Pick the section with the SMALLEST distance — that's the one user is looking at.
+         This works for short sections too. */
+      const vCenter = window.innerHeight / 2;
+      let bestDist = Infinity;
       sections.forEach(s => {
         const r = s.getBoundingClientRect();
-        if (r.top <= mid && r.bottom >= mid) cur = s.id;
+        const sCenter = r.top + r.height / 2;
+        const dist = Math.abs(sCenter - vCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          cur = s.id;
+        }
       });
     }
     links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
