@@ -83,9 +83,10 @@ body {
   object-position: center 15%;
   display: block;
   filter: grayscale(8%) contrast(1.02) brightness(1.05);
-  transition: filter 0.5s ease;
+  transform: scale(1);
+  transition: filter 0.5s ease, transform 0.5s ease;
 }
-.photo-frame:hover img { filter: grayscale(0%) contrast(1) brightness(1.08); }
+.photo-frame:hover img { filter: grayscale(0%) contrast(1) brightness(1.08); transform: scale(1.04); }
 .photo-frame::after {
   content: '';
   position: absolute; inset: 0;
